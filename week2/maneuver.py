@@ -1,5 +1,5 @@
 import time
-from picarx import Picarx
+from picarx_improved import Picarx
 from utils import reset_mcu
 import sys
 sys.path.append(r'/home/pi/RobotSystems/lib')
