@@ -152,4 +152,16 @@ def parallelParking():
 
 
 if __name__ == "__main__":
-    print("import successful")
+#    print("import successful")
+    while True:
+        command = input("1- Forward and backward in straight lines or with different steering angles\n2- Parallel-parking left and right\n3 Three-point turning (K-turning) with initial turn to the left or right\n4 Exit\nEnter: ")
+        
+        if command == "1":
+            forwardBackward()
+        elif command == "2":
+            parallelParking()
+        elif command == "3":
+            kTurning()
+        elif command == "4":
+            break
+
