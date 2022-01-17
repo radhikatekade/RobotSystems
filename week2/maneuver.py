@@ -1,9 +1,13 @@
 import time
-from picarx_improved import Picarx
-from utils import reset_mcu
 import sys
-sys.path.append(r'/home/pi/RobotSystems/lib')
-reset_mcu()
+import os
+
+
+_path = os.getcwd() + '/lib'
+# print(_path)
+sys.path.append(_path)
+
+from picarx_improved import Picarx
 
 
 def forwardBackward():
