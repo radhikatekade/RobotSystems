@@ -31,7 +31,7 @@ def parallelParking(dir):
         px = Picarx()
 
         px.forward(30)
-        time.sleep(0.5)
+        time.sleep(1)
 
         px.forward(0)
         time.sleep(1)
@@ -49,7 +49,7 @@ def parallelParking(dir):
         time.sleep(1)
 
         px.backward(30)
-        time.sleep(0.7)
+        time.sleep(1.4)
 
         px.forward(0)
         time.sleep(1)
@@ -67,7 +67,7 @@ def parallelParking(dir):
         time.sleep(1)
 
         px.backward(20)
-        time.sleep(0.7)
+        time.sleep(1.4)
 
         px.forward(0)
         time.sleep(1)
@@ -85,7 +85,7 @@ def parallelParking(dir):
         time.sleep(1)
 
         px.forward(30)
-        time.sleep(0.3)
+        time.sleep(0.6)
 
         px.forward(0)
         time.sleep(1)
@@ -103,7 +103,7 @@ def parallelParking(dir):
         time.sleep(1)
 
         px.forward(10)
-        time.sleep(0.2)
+        time.sleep(0.4)
 
         px.forward(0)
         time.sleep(1)
