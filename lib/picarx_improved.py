@@ -1,14 +1,6 @@
 # from ezblock import Servo,PWM,fileDB,Pin,ADC
 import time
 
-import logging
-from logdecorator import log_on_start , log_on_end , log_on_error
-logger = logging.getlogger()
-logger.setLevel(logging.DEBUG)
-
-logging.basicConfig(
-    format='%(asctime)s %(levelname)-8s %(message)s'
-    datefmt='%Y-%m-%d %H:%M:%S')
 
 try:
     from servo import Servo
@@ -24,6 +16,15 @@ except ImportError:
     print("This computer does not appear to be a PiCar -X system (ezblock is not present). Shadowing hardware calls with substitute functions ")
     from sim_ezblock import*
 
+import logging
+from logdecorator import log_on_start, log_on_end, log_on_error
+
+logger = logging.getLogger()
+logger.setLevel(logging.DEBUG)
+
+logging.basicConfig(
+    format='%(asctime)s %(levelname)-8s %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S')
 
 class Picarx(object):
     PERIOD = 4095
