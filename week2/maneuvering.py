@@ -3,9 +3,20 @@ sys.path.append(r'/home/pi/RobotSystems/lib')
 from utils import reset_mcu
 reset_mcu()
 
+import logging
+from logdecorator import log_on_start , log_on_end , log_on_error
+logger = logging.getLogger()
+logger.setLevel(logging.DEBUG)
+
+logging.basicConfig(
+    format='%(asctime)s %(levelname)-8s %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S')
+
 from picarx import Picarx
 import time
 
+@log_on_start(logging.DEBUG, "Start maneuvering...")
+@log_on_end(logging.DEBUG, "Motion executed successfully")
 def kTurning():
     try:
         px = Picarx()
@@ -85,7 +96,10 @@ def forwardBackward():
     finally:
         px.forward(0)
 
-def parallelParking():
+def parallelParking(direction):
+    wheel_direction = 1
+    if direction == 'l':
+        wheel_direction *= -1
     try:
         px = Picarx()
 
@@ -95,7 +109,7 @@ def parallelParking():
         px.forward(0)
         time.sleep(1)
 
-        for angle in range(0,45):
+        for angle in range(0,wheel_direction*45,wheel_direction):
             px.set_dir_servo_angle(angle)
             time.sleep(0.01)   
         
@@ -108,7 +122,7 @@ def parallelParking():
         px.forward(0)
         time.sleep(1)
 
-        for angle in range(45,-45,-1):
+        for angle in range(wheel_direction*45,wheel_direction*-45,wheel_direction*-1):
             px.set_dir_servo_angle(angle)
             time.sleep(0.01)   
         
@@ -121,7 +135,7 @@ def parallelParking():
         px.forward(0)
         time.sleep(1)
 
-        for angle in range(-45,45):
+        for angle in range(wheel_direction*-45,wheel_direction*45,wheel_direction):
             px.set_dir_servo_angle(angle)
             time.sleep(0.01)   
     
@@ -134,7 +148,7 @@ def parallelParking():
         px.forward(0)
         time.sleep(1)
         
-        for angle in range(45,0,-1):
+        for angle in range(wheel_direction*45,0,wheel_direction*-1):
             px.set_dir_servo_angle(angle)
             time.sleep(0.01)
         
@@ -157,7 +171,8 @@ if __name__ == "__main__":
         if command == "a":
             forwardBackward()
         elif command == "b":
-            parallelParking()
+            direction = input("\nEnter the direction:\n")
+            parallelParking(direction)
         elif command == "c":
             kTurning()
         elif command == "d":
