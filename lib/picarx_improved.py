@@ -1,6 +1,6 @@
 # from ezblock import Servo,PWM,fileDB,Pin,ADC
 import time
-
+import atexit
 
 try:
     from servo import Servo
@@ -26,6 +26,8 @@ logging.basicConfig(
     format='%(asctime)s %(levelname)-8s %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S')
 
+@log_on_start(logging.DEBUG, "Message when fuction starts")
+@log_on_end(logging.DEBUG, "Message when fuction ends successfully")
 class Picarx(object):
     PERIOD = 4095
     PRESCALER = 10
@@ -69,6 +71,7 @@ class Picarx(object):
         for pin in self.motor_speed_pins:
             pin.period(self.PERIOD)
             pin.prescaler(self.PRESCALER)
+        atexit.register(self.stop)
 
     def set_motor_speed(self, motor, speed):
         # global cali_speed_value,cali_dir_value
@@ -78,8 +81,8 @@ class Picarx(object):
         elif speed < 0:
             direction = -1 * self.cali_dir_value[motor]
         speed = abs(speed)
-        if speed != 0:
-            speed = int(speed / 2) + 50
+        #if speed != 0:
+        #    speed = int(speed / 2) + 50
         speed = speed - self.cali_speed_value[motor]
         if direction < 0:
             self.motor_direction_pins[motor].high()
@@ -227,7 +230,6 @@ class Picarx(object):
         cm = round(during * 340 / 2 * 100, 2)
         # print(cm)
         return cm
-
 
 if __name__ == "__main__":
     px = Picarx()
