@@ -85,13 +85,13 @@ def parallelParking(dir):
         time.sleep(1)
 
         px.forward(30)
-        time.sleep(0.6)
+        time.sleep(1.2)
 
         px.forward(0)
         time.sleep(1)
 
         if (dir == 'l'):
-            for angle in range(-theta, 0):
+            for angle in range(-theta, 0): 
                 px.set_dir_servo_angle(angle)
                 time.sleep(0.01)
         else:
@@ -103,7 +103,7 @@ def parallelParking(dir):
         time.sleep(1)
 
         px.forward(10)
-        time.sleep(0.4)
+        time.sleep(0.8)
 
         px.forward(0)
         time.sleep(1)
