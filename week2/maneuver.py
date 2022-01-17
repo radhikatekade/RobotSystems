@@ -25,8 +25,9 @@ def forwardBackward():
         px.forward(0)
 
 
-def parallelParking():
+def parallelParking(dir):
     try:
+        theta = 45
         px = Picarx()
 
         px.forward(30)
@@ -35,9 +36,14 @@ def parallelParking():
         px.forward(0)
         time.sleep(1)
 
-        for angle in range(0, 45):
-            px.set_dir_servo_angle(angle)
-            time.sleep(0.01)
+        if (dir == 'l'):
+            for angle in range(0, -theta, -1):
+                px.set_dir_servo_angle(angle)
+                time.sleep(0.01)
+        else:
+            for angle in range(0, theta):
+                px.set_dir_servo_angle(angle)
+                time.sleep(0.01)
 
         px.forward(0)
         time.sleep(1)
@@ -48,9 +54,14 @@ def parallelParking():
         px.forward(0)
         time.sleep(1)
 
-        for angle in range(45, -45, -1):
-            px.set_dir_servo_angle(angle)
-            time.sleep(0.01)
+        if (dir == 'l'):
+            for angle in range(-theta, theta):
+                px.set_dir_servo_angle(angle)
+                time.sleep(0.01)
+        else:
+            for angle in range(theta, -theta, -1):
+                px.set_dir_servo_angle(angle)
+                time.sleep(0.01)
 
         px.forward(0)
         time.sleep(1)
@@ -61,9 +72,14 @@ def parallelParking():
         px.forward(0)
         time.sleep(1)
 
-        for angle in range(-45, 45):
-            px.set_dir_servo_angle(angle)
-            time.sleep(0.01)
+        if (dir == 'l'):
+            for angle in range(theta, -theta, -1):
+                px.set_dir_servo_angle(angle)
+                time.sleep(0.01)
+        else:
+            for angle in range(-theta, theta):
+                px.set_dir_servo_angle(angle)
+                time.sleep(0.01)
 
         px.forward(0)
         time.sleep(1)
@@ -74,9 +90,14 @@ def parallelParking():
         px.forward(0)
         time.sleep(1)
 
-        for angle in range(45, 0, -1):
-            px.set_dir_servo_angle(angle)
-            time.sleep(0.01)
+        if (dir == 'l'):
+            for angle in range(-theta, 0):
+                px.set_dir_servo_angle(angle)
+                time.sleep(0.01)
+        else:
+            for angle in range(theta, 0, -1):
+                px.set_dir_servo_angle(angle)
+                time.sleep(0.01)
 
         px.forward(0)
         time.sleep(1)
@@ -163,7 +184,8 @@ if __name__ == "__main__":
         if command == "1":
             forwardBackward()
         elif command == "2":
-            parallelParking()
+            direction = input("l- left\nr- right\nEnter: ")
+            parallelParking(dir)
         elif command == "3":
             kTurning()
         elif command == "4":
