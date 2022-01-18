@@ -25,8 +25,14 @@ def forwardBackward():
         px.forward(0)
 
 
-def parallelParking():
+def parallelParking(dir):
     try:
+        steer = 1
+        incr = 1
+
+        if dir == 'l':
+            steer = steer*-1
+            incr = incr*-1
         px = Picarx()
 
         px.forward(30)
@@ -35,7 +41,7 @@ def parallelParking():
         px.forward(0)
         time.sleep(1)
 
-        for angle in range(0, 45):
+        for angle in range(0, 45*steer, incr):
             px.set_dir_servo_angle(angle)
             time.sleep(0.01)
 
@@ -48,7 +54,7 @@ def parallelParking():
         px.forward(0)
         time.sleep(1)
 
-        for angle in range(45, -45, -1):
+        for angle in range(45*steer, -45*steer, -1*incr):
             px.set_dir_servo_angle(angle)
             time.sleep(0.01)
 
@@ -61,7 +67,7 @@ def parallelParking():
         px.forward(0)
         time.sleep(1)
 
-        for angle in range(-45, 45):
+        for angle in range(-45*steer, 45*steer, incr):
             px.set_dir_servo_angle(angle)
             time.sleep(0.01)
 
@@ -74,7 +80,7 @@ def parallelParking():
         px.forward(0)
         time.sleep(1)
 
-        for angle in range(45, 0, -1):
+        for angle in range(45*steer, 0, -1*incr):
             px.set_dir_servo_angle(angle)
             time.sleep(0.01)
 
