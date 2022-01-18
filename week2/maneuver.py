@@ -35,7 +35,7 @@ def parallelParking(dir):
             incr = incr*-1
         px = Picarx()
 
-        px.forward(30)
+        px.forward(60)
         time.sleep(0.5)
 
         px.forward(0)
@@ -48,7 +48,7 @@ def parallelParking(dir):
         px.forward(0)
         time.sleep(1)
 
-        px.backward(30)
+        px.backward(60)
         time.sleep(0.7)
 
         px.forward(0)
@@ -61,7 +61,7 @@ def parallelParking(dir):
         px.forward(0)
         time.sleep(1)
 
-        px.backward(20)
+        px.backward(40)
         time.sleep(0.7)
 
         px.forward(0)
@@ -74,7 +74,7 @@ def parallelParking(dir):
         px.forward(0)
         time.sleep(1)
 
-        px.forward(30)
+        px.forward(60)
         time.sleep(0.3)
 
         px.forward(0)
@@ -87,7 +87,7 @@ def parallelParking(dir):
         px.forward(0)
         time.sleep(1)
 
-        px.forward(10)
+        px.forward(40)
         time.sleep(0.2)
 
         px.forward(0)
@@ -99,7 +99,7 @@ def kTurning():
     try:
         px = Picarx()
 
-        px.forward(30)
+        px.forward(40)
         time.sleep(0.5)
 
         px.forward(0)
@@ -112,7 +112,7 @@ def kTurning():
         px.forward(0)
         time.sleep(1)
 
-        px.forward(30)
+        px.forward(60)
         time.sleep(0.7)
 
         px.forward(0)
@@ -125,8 +125,8 @@ def kTurning():
         px.forward(0)
         time.sleep(1)
 
-        px.backward(30)
-        time.sleep(0.7)
+        px.backward(50)
+        time.sleep(1)
 
         px.forward(0)
         time.sleep(1)
@@ -138,8 +138,8 @@ def kTurning():
         px.forward(0)
         time.sleep(1)
 
-        px.forward(30)
-        time.sleep(1)
+        px.forward(60)
+        time.sleep(1.2)
 
         px.forward(0)
         time.sleep(1)
@@ -151,7 +151,7 @@ def kTurning():
         px.forward(0)
         time.sleep(1)
 
-        px.forward(30)
+        px.forward(40)
         time.sleep(0.7)
 
         px.forward(0)
