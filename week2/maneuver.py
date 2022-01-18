@@ -169,7 +169,7 @@ if __name__ == "__main__":
         if command == "1":
             forwardBackward()
         elif command == "2":
-            dir = input("l - Left\nr - Right\nEnter: ')
+            dir = input("l - Left\nr - Right\nEnter: ")
             parallelParking(dir)
         elif command == "3":
             kTurning()
