@@ -42,7 +42,7 @@ class Sensing(object):
 
 if __name__ == "__main__":
     import time
-    GM = Grayscale_Module(950)
+    GM = Sensing(950)
     while True:
         print(GM.get_grayscale_data())
         time.sleep(1)
