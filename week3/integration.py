@@ -88,7 +88,7 @@ class controller():
        lane_lines=detect_lane(frame)
        frame_shape=frame.shape
        angle,lines = calculate_heading(lane_lines,frame_shape[1],frame_shape[0])
-       self.px.set_dir_servo_angle(angle*self.scaling_factor)
+       self.px.set_dir_servo_angle(angle)
        self.px.forward(15)
        time.sleep(0.1)
 
