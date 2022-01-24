@@ -89,7 +89,7 @@ class controller():
        frame_shape=frame.shape
        angle,lines = calculate_heading(lane_lines,frame_shape[1],frame_shape[0])
        angle_to_mid_deg = int((angle*180)/3.14)
-       self.px.set_dir_servo_angle(angle_to_mid_deg)
+       self.px.set_dir_servo_angle(angle_to_mid_deg*0.7)
        self.px.forward(20)
        time.sleep(0.1)
 
