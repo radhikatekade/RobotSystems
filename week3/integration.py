@@ -11,6 +11,7 @@ sys.path.append(_path)
 #reset_mcu()
 
 from picarx_improved import Picarx
+from opencv_lane import *
 
 try:
     from servo import Servo
@@ -81,21 +82,21 @@ class controller():
         finally:
             self.px.stop()
                 
-    #def camera_control(self,frame):
-    #    lane_lines=detect_lane(frame)
-    #    frame_shape=frame.shape
-    #    angle,lines = calculate_heading(lane_lines,frame_shape[1],frame_shape[0])
-    #    self.px.set_dir_servo_angle(angle)
-    #    self.px.forward(15,angle)
-    #    time.sleep(0.1)
+    def camera_control(self,frame):
+       lane_lines=detect_lane(frame)
+       frame_shape=frame.shape
+       angle,lines = calculate_heading(lane_lines,frame_shape[1],frame_shape[0])
+       self.px.set_dir_servo_angle(angle)
+       self.px.forward(15,angle)
+       time.sleep(0.1)
 
 if __name__ == "__main__":
 
-    sensitivity = 200
-    polarity = 0
-    scale = 80
+    sensitivity = 400
+    polarity = 1
+    scale = 50
     runtime = 10
-    speed = 40
+    speed = 20
 
     car = Picarx()
     sensor = Sensing()
