@@ -6,13 +6,13 @@ def detect_edges(frame):
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     cv2.imshow('window',hsv)
     cv2.waitKey(0) 
-    # cv2.destroyAllWindows() 
+    cv2.destroyAllWindows() 
     upper_bound=(150,255,255)
     lower_bound=(60,40,40)
     mask = cv2.inRange(hsv, lower_bound, upper_bound)
     cv2.imshow('window',mask)
     cv2.waitKey(0) 
-    # cv2.destroyAllWindows()
+    cv2.destroyAllWindows()
     edges = cv2.Canny(mask, 200, 400)
     
     return edges
