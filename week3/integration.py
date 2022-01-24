@@ -96,7 +96,7 @@ if __name__ == "__main__":
 
     sensitivity = 400
     polarity = 1
-    scale = 50
+    scale = 150
     runtime = 10
     speed = 10
 
