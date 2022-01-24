@@ -96,7 +96,7 @@ if __name__ == "__main__":
     polarity = 1
     scale = 50
     runtime = 10
-    speed = 20
+    speed = 10
 
     car = Picarx()
     sensor = Sensing()
