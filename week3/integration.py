@@ -89,7 +89,7 @@ class controller():
        frame_shape=frame.shape
        angle,lines = calculate_heading(lane_lines,frame_shape[1],frame_shape[0])
        self.px.set_dir_servo_angle(angle)
-       self.px.forward(15,angle)
+       self.px.forward(15)
        time.sleep(0.1)
 
 if __name__ == "__main__":
@@ -120,8 +120,8 @@ if __name__ == "__main__":
     else:
         control = controller(car, scale)
         t = time.time()
-        for angle in range(0,35):
-            car.set_camera_servo2_angle(angle)
+        for angle in range(0,-35, -1):
+            car.set_camera_servo1_angle(angle)
             time.sleep(0.01)
         while time.time() - t < runtime:
             ret, frame = vid.read()
