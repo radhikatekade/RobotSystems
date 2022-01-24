@@ -29,6 +29,8 @@ except ImportError:
 
 #from adc import ADC
 
+vid=cv2.VideoCapture(0)
+
 class Sensing(object):
     def __init__(self,ref = 1000):
         self.chn_0 = ADC("A0")
@@ -99,14 +101,29 @@ if __name__ == "__main__":
     speed = 10
 
     car = Picarx()
-    sensor = Sensing()
-    interpreter = Interpreter(sensitivity, polarity)
-    control = controller(car, scale)
 
-    t = time.time()
-    while time.time() - t < runtime:
-        readings = sensor.get_grayscale_data()
-        direction = interpreter.get_grayscale_value(readings)
-        angle = control.controller(direction)
-        car.forward(speed=speed)
-    car.stop()
+    command = input("1) Line following or 2) lane following: \n")
+
+    if command == 1:
+        sensor = Sensing()
+        interpreter = Interpreter(sensitivity, polarity)
+        control = controller(car, scale)
+
+        t = time.time()
+        while time.time() - t < runtime:
+            readings = sensor.get_grayscale_data()
+            direction = interpreter.get_grayscale_value(readings)
+            angle = control.controller(direction)
+            car.forward(speed=speed)
+        car.stop()
+
+    else:
+        control = controller(car, scale)
+        t = time.time()
+        for angle in range(0,35):
+            car.set_camera_servo2_angle(angle)
+            time.sleep(0.01)
+        while time.time() - t < runtime:
+            ret, frame = vid.read()
+            control.camera_control(frame)
+        car.stop()
