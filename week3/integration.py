@@ -1,3 +1,4 @@
+#file where all the 3 functions- sensing, interpretation and control, are intregrated together
 import sys
 import os
 import logging
@@ -31,6 +32,7 @@ except ImportError:
 
 vid=cv2.VideoCapture(0)
 
+#definition of sensor class
 class Sensing(object):
     def __init__(self,ref = 1000):
         self.chn_0 = ADC("A0")
@@ -45,6 +47,7 @@ class Sensing(object):
         adc_value_list.append(self.chn_2.read())
         return adc_value_list
 
+#definition  of Interpretation class
 class Interpreter(object):
     def __init__(self, sensitivity, polarity):
         self.sensitivity = sensitivity
@@ -71,6 +74,7 @@ class Interpreter(object):
         
         return current_pos
 
+#definition of controller class
 class controller():
     def __init__(self,px, scaling_factor=40):
         self.scaling_factor = scaling_factor
@@ -106,6 +110,7 @@ if __name__ == "__main__":
     command = input("1) Line following or 2) lane following: \n")
 
     if command == 1:
+        #line following
         sensor = Sensing()
         interpreter = Interpreter(sensitivity, polarity)
         control = controller(car, scale)
@@ -119,6 +124,7 @@ if __name__ == "__main__":
         car.stop()
 
     else:
+        #lane following
         control = controller(car, scale)
         t = time.time()
         #for angle in range(0,-35, -1):
