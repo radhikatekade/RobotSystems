@@ -62,10 +62,16 @@ class Perception:
             target_color_range = color_range[self.__target_color]
             frame_mask = cv2.inRange(frame_lab, tuple(target_color_range['min']), tuple(
                 target_color_range['max']))  # Perform bit operations on the original image and mask
+
+            # Decreases the image's details and removes the image's white noise
             eroded = cv2.erode(frame_mask, cv2.getStructuringElement(
                 cv2.MORPH_RECT, (3, 3)))  # corrosion
+
+            # Used to draw attention to specific elements and expand the size of an object
             dilated = cv2.dilate(eroded, cv2.getStructuringElement(
                 cv2.MORPH_RECT, (3, 3)))  # dilation
+
+            # Determining the image's contours (contour = lines connecting the image's points) Shape analysis and item detection are made easier by contours.
             contours = cv2.findContours(
                 dilated, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)[-2]  # find the contour
 
@@ -73,6 +79,7 @@ class Perception:
 
     def isContourValid(self, area_max, areaMaxContour, size=(640, 480)):
         """Check if contour is of valid size"""
+        # checking the max area of the image.
         if area_max > 1000:  # have found the largest area
             (center_x, center_y), radius = cv2.minEnclosingCircle(
                 areaMaxContour)  # Get the smallest circumcircle
@@ -83,6 +90,8 @@ class Perception:
                 Misc.map(center_y, 0, size[1], 0, self.__orig_imsize[0]))
             radius = int(
                 Misc.map(radius, 0, size[0], 0, self.__orig_imsize[1]))
+
+            # If the radius is more than 100 pixels, the original image is returned.
             if radius > 100:
                 return False, None
             return True, (center_x, center_y, radius)
@@ -118,11 +127,11 @@ class Perception:
         if not valid:
             return img
 
+        # otherwise, we draw a circle
         cv2.circle(img, (int(center_x), int(center_y)),
                    int(radius), range_rgb[self.__target_color], 2)
 
         return img
-
 
 
 if __name__ == '__main__':
