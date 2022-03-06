@@ -13,4 +13,6 @@ for b in boxes.splitlines():
   cv2.putText(img, b[0], (x, hImg - y + 13), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (50, 205, 50), 1)
 
   cv2.imshow('Detected text', img)
-  cv2.waitKey(0)
+  key = cv2.waitKey(1)
+  if key==27:
+    cv2.destroyAllWindows()
